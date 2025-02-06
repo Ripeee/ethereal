@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
 	// 	locales: ["default", "en", "zh-CN", "id-ID"],
 	// 	defaultLocale: "default",
 	// },
+	images: {
+		domains: ['i.seadn.io']
+	}
 };
 
 export default nextConfig;
