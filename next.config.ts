@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
 	// 	defaultLocale: "default",
 	// },
 	images: {
-		domains: ['i.seadn.io']
-	}
+		domains: ["i.seadn.io", "video.wixstatic.com"],
+	},
 };
 
 export default nextConfig;

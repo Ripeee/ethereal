@@ -1,11 +1,18 @@
+'use client'
 // import Image from "next/image";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Card from "./components/Card";
+import * as React from 'react'
+import dynamic from "next/dynamic";
 
 export default function Home() {
 
-const card = [
+	const VideoComponent = dynamic(() => import("./VideoPlayer"), { ssr: false });
+
+	const [isLoading, setIsLoading] = React.useState<boolean>(false)
+
+	const card = [
 		{
 			id: 1,
 			image:
@@ -50,27 +57,46 @@ const card = [
 		},
 	];
 
+
 return (
-	<main className="md:mx-10 flex flex-col justify-between">
-		<Navbar />
-
-		{/* Header */}
-		<p className="">Menampar</p>
-
-		<div className="grid grid-cols-4">
-			{card.map((item) => (
-				<Card
-					title={item.title}
-					text={item.text}
-					image={item.image}
-					key={item.id}
-				/>
-			))}
+	<main className="flex flex-col justify-between">
+		<div className="md:mx-10">
+			<Navbar />
 		</div>
 
-		{/* <div className="bottom-0 w-full"> */}
+		{/* Header */}
+		<VideoComponent />
+		<div className="absolute inset-0 h-screen bg-black opacity-30 z-[-1]"></div>
+		<div className="h-screen w-full relative top-0 flex flex-col justify-center items-center">
+			<h1 className="font-bold text-3xl">
+				Ethereal: A New Era of Digital Possession
+			</h1>
+			<h4 className="font-bold text-xl">
+				→ Empowering creators & collectors through blockchain.
+			</h4>
+		</div>
+
+		{/* Card */}
+		<div className="md:mx-10">
+			{isLoading ? (
+				<div className="">
+					<p>Loading...</p>
+				</div>
+			) : (
+				<div className="grid grid-cols-4">
+					{card.map((item) => (
+						<Card
+							title={item.title}
+							text={item.text}
+							image={item.image}
+							key={item.id}
+						/>
+					))}
+				</div>
+			)}
+		</div>
+
 		<Footer />
-		{/* </div> */}
 	</main>
 	// <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
 	//   <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
